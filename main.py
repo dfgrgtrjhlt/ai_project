@@ -6,3 +6,4 @@ if st.button('인사말 생성'):
   st.info(a+'님, 안녕하시긔!!!!!!!!!!!!!!!!!!!!! 반갑지않긔윤!!><')
   st.warning(b+'를 꼴에 ㅋ 좋아하시는구먼?')
   st.error('반갑노')
+  st.balloons()
