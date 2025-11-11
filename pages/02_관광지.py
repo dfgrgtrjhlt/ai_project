@@ -26,13 +26,19 @@ locations = [
 seoul_center = [37.5665, 126.9780]
 m = folium.Map(location=seoul_center, zoom_start=12)
 
-# 관광지 마커 추가 (빨간색)
+# 관광지 마커 추가 (핑크색)
 for place in locations:
-    folium.Marker(
-        [place["lat"], place["lon"]],
+    # folium.Icon의 color 옵션에는 pink가 기본적으로 없기 때문에
+    # 커스텀 아이콘 색상을 HTML로 지정
+    folium.CircleMarker(
+        location=[place["lat"], place["lon"]],
+        radius=8,
+        color="#ff4da6",         # 핫핑크 테두리
+        fill=True,
+        fill_color="#ff66b2",    # 핑크색 내부
+        fill_opacity=0.9,
         popup=f"<b>{place['name']}</b><br>{place['desc']}",
         tooltip=place["name"],
-        icon=folium.Icon(color="red", icon="info-sign"),
     ).add_to(m)
 
 # 지도 표시 (크기 70%)
