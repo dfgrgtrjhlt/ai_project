@@ -6,38 +6,51 @@ from streamlit_folium import st_folium
 st.set_page_config(page_title="서울 관광지도", layout="wide")
 
 st.title("🌏 외국인이 좋아하는 서울 주요 관광지 TOP 10")
-st.write("Folium 지도를 이용해 외국인이 자주 찾는 서울의 명소를 표시했습니다.")
+st.write("Folium 지도를 이용해 외국인이 자주 찾는 서울의 명소와 주변 전철역 정보를 표시했습니다.")
 
-# 관광지 데이터
+# 관광지 + 가까운 지하철역 데이터
 locations = [
-    {"name": "경복궁", "lat": 37.579617, "lon": 126.977041, "desc": "조선시대의 대표적인 궁궐"},
-    {"name": "명동", "lat": 37.563757, "lon": 126.982690, "desc": "쇼핑과 길거리 음식으로 유명한 거리"},
-    {"name": "남산타워(N서울타워)", "lat": 37.551169, "lon": 126.988227, "desc": "서울의 전경을 한눈에 볼 수 있는 타워"},
-    {"name": "북촌한옥마을", "lat": 37.582604, "lon": 126.983998, "desc": "전통 한옥이 잘 보존된 마을"},
-    {"name": "홍대거리", "lat": 37.556293, "lon": 126.923694, "desc": "젊음과 예술의 거리"},
-    {"name": "동대문디자인플라자(DDP)", "lat": 37.566479, "lon": 127.009180, "desc": "현대적 건축과 패션의 중심지"},
-    {"name": "롯데월드", "lat": 37.511034, "lon": 127.098016, "desc": "도심 속 테마파크"},
-    {"name": "청계천", "lat": 37.569008, "lon": 126.978528, "desc": "서울 도심을 가로지르는 복원된 하천"},
-    {"name": "인사동", "lat": 37.574024, "lon": 126.984911, "desc": "한국 전통 문화와 예술의 거리"},
-    {"name": "잠실 롯데타워(서울스카이)", "lat": 37.513068, "lon": 127.102493, "desc": "세계에서 가장 높은 타워 중 하나"},
+    {"name": "경복궁", "lat": 37.579617, "lon": 126.977041, 
+     "desc": "조선시대의 대표적인 궁궐", "station": "3호선 경복궁역"},
+    {"name": "명동", "lat": 37.563757, "lon": 126.982690, 
+     "desc": "쇼핑과 길거리 음식으로 유명한 거리", "station": "4호선 명동역"},
+    {"name": "남산타워(N서울타워)", "lat": 37.551169, "lon": 126.988227, 
+     "desc": "서울의 전경을 한눈에 볼 수 있는 타워", "station": "4호선 명동역"},
+    {"name": "북촌한옥마을", "lat": 37.582604, "lon": 126.983998, 
+     "desc": "전통 한옥이 잘 보존된 마을", "station": "3호선 안국역"},
+    {"name": "홍대거리", "lat": 37.556293, "lon": 126.923694, 
+     "desc": "젊음과 예술의 거리", "station": "2호선 홍대입구역"},
+    {"name": "동대문디자인플라자(DDP)", "lat": 37.566479, "lon": 127.009180, 
+     "desc": "현대적 건축과 패션의 중심지", "station": "2호선 동대문역사문화공원역"},
+    {"name": "롯데월드", "lat": 37.511034, "lon": 127.098016, 
+     "desc": "도심 속 테마파크", "station": "2호선 잠실역"},
+    {"name": "청계천", "lat": 37.569008, "lon": 126.978528, 
+     "desc": "서울 도심을 가로지르는 복원된 하천", "station": "1호선 종각역"},
+    {"name": "인사동", "lat": 37.574024, "lon": 126.984911, 
+     "desc": "한국 전통 문화와 예술의 거리", "station": "3호선 안국역"},
+    {"name": "잠실 롯데타워(서울스카이)", "lat": 37.513068, "lon": 127.102493, 
+     "desc": "세계에서 가장 높은 타워 중 하나", "station": "2호선 잠실역"},
 ]
 
 # 지도 초기 위치: 서울 중심
 seoul_center = [37.5665, 126.9780]
 m = folium.Map(location=seoul_center, zoom_start=12)
 
-# 관광지 마커 추가 (핑크색)
+# 관광지 마커 (핑크색 원형)
 for place in locations:
-    # folium.Icon의 color 옵션에는 pink가 기본적으로 없기 때문에
-    # 커스텀 아이콘 색상을 HTML로 지정
+    popup_html = f"""
+    <b>{place['name']}</b><br>
+    {place['desc']}<br>
+    🚇 <b>{place['station']}</b>
+    """
     folium.CircleMarker(
         location=[place["lat"], place["lon"]],
         radius=8,
         color="#ff4da6",         # 핫핑크 테두리
         fill=True,
-        fill_color="#ff66b2",    # 핑크색 내부
+        fill_color="#ff66b2",    # 핑크 내부
         fill_opacity=0.9,
-        popup=f"<b>{place['name']}</b><br>{place['desc']}",
+        popup=popup_html,
         tooltip=place["name"],
     ).add_to(m)
 
@@ -47,7 +60,14 @@ st_folium(m, width=630, height=420)
 # 관광지 설명 목록
 st.write("### 🏙️ 서울 관광지 TOP 10 요약")
 for i, place in enumerate(locations, start=1):
-    st.markdown(f"**{i}. {place['name']}** — {place['desc']}")
+    st.markdown(f"**{i}. {place['name']}** — {place['desc']} (🚇 {place['station']})")
 
 st.write("---")
-st.caption("© 데이터 출처: VisitSeoul, 한국관광공사")
+
+# 여행 일정 생성 기능
+st.subheader("📅 여행 일정 만들기")
+
+days = st.selectbox("여행 기간을 선택하세요 (1~3일)", [1, 2, 3])
+
+# 일정 자동 분배
+places_per_day =
