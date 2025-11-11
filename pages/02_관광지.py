@@ -26,17 +26,22 @@ locations = [
 seoul_center = [37.5665, 126.9780]
 m = folium.Map(location=seoul_center, zoom_start=12)
 
-# 관광지 마커 추가
+# 관광지 마커 추가 (빨간색)
 for place in locations:
     folium.Marker(
         [place["lat"], place["lon"]],
         popup=f"<b>{place['name']}</b><br>{place['desc']}",
         tooltip=place["name"],
-        icon=folium.Icon(color="blue", icon="info-sign"),
+        icon=folium.Icon(color="red", icon="info-sign"),
     ).add_to(m)
 
-# 지도 표시
-st_folium(m, width=900, height=600)
+# 지도 표시 (크기 70%)
+st_folium(m, width=630, height=420)
+
+# 관광지 설명 목록
+st.write("### 🏙️ 서울 관광지 TOP 10 요약")
+for i, place in enumerate(locations, start=1):
+    st.markdown(f"**{i}. {place['name']}** — {place['desc']}")
 
 st.write("---")
 st.caption("© 데이터 출처: VisitSeoul, 한국관광공사")
