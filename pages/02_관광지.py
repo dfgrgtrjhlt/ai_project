@@ -70,4 +70,23 @@ st.subheader("📅 여행 일정 만들기")
 days = st.selectbox("여행 기간을 선택하세요 (1~3일)", [1, 2, 3])
 
 # 일정 자동 분배
-places_per_day =
+places_per_day = len(locations) // days
+schedule = []
+start_idx = 0
+
+for d in range(days):
+    if d == days - 1:
+        day_places = locations[start_idx:]
+    else:
+        day_places = locations[start_idx:start_idx + places_per_day]
+    schedule.append(day_places)
+    start_idx += places_per_day
+
+# 일정 표시
+for d, day_places in enumerate(schedule, start=1):
+    st.write(f"### ✨ Day {d}")
+    for p in day_places:
+        st.markdown(f"- **{p['name']}** ({p['station']}) — {p['desc']}")
+    st.write("")
+
+st.caption("© 데이터 출처: VisitSeoul, 한국관광공사")
