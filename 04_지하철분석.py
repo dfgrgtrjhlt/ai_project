@@ -47,12 +47,3 @@ fig = px.bar(
 fig.update_layout(showlegend=False)
 
 st.plotly_chart(fig, use_container_width=True)
-
-
-# ---------------------------
-# requirements.txt (for Streamlit Cloud)
-# ---------------------------
-# streamlit
-# pandas
-# plotly
-# numpy
