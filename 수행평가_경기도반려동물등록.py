@@ -101,28 +101,9 @@ if st.button("반려동물 추천 받기 💖"):
         scores["앵무새"] += 2
 
     # 결과
-    best_pet = max(scores, key=scores.get).strip()
+    best_pet = max(scores, key=scores.get)
 
     st.subheader(f"✨ 당신에게 어울리는 반려동물은 **{best_pet}**입니다!")
-
-    # -------------------------------
-    # 🖼️ 반려동물 이미지 (로컬 + Unsplash)
-    # -------------------------------
-    pet_images = {
-        "강아지": "/mnt/data/갱얼쥐.jpg",
-        "코브라": "/mnt/data/코브라띠.webp",
-
-        # Streamlit에서 확실하게 뜨는 Unsplash CDN
-        "고양이": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131",
-        "햄스터": "https://images.unsplash.com/photo-1558944351-c9c41341f95d",
-        "기니피그": "https://images.unsplash.com/photo-1583511655826-a5c72c2afbec",
-        "앵무새": "https://images.unsplash.com/photo-1501706362039-c06b2d715385"
-    }
-
-    fallback_image = "https://images.unsplash.com/photo-1518791841217-8f162f1e1131"
-    image_url = pet_images.get(best_pet, fallback_image)
-
-    st.image(image_url, caption=f"{best_pet} 사진", use_column_width=True)
 
     # 하트 효과
     st.snow()
