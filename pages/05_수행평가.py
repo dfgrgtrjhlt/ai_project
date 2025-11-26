@@ -11,14 +11,23 @@ st.set_page_config(
 )
 
 @st.cache_data
-
 def load_data():
-    # 현재 파일(page.py)의 상위폴더 = 프로젝트 루트
-    base_path = os.path.dirname(os.path.dirname(__file__))
-    data_path = os.path.join(base_path, 'data', 'pet_data.csv')
+    import os
+    
+    CURRENT_FILE = os.path.abspath(__file__)
+    ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_FILE))
+    data_path = os.path.join(ROOT_DIR, "data", "pet_data.csv")
+
+    st.write("🔍 CSV 경로:", data_path)
+    st.write("📁 파일 존재?", os.path.exists(data_path))
 
     try:
         df = pd.read_csv(data_path, encoding='cp949')
+        return df
+    except Exception as e:
+        st.error(f"데이터 로드 오류: {e}")
+        return None
+
 
         
         # 컬럼 이름 정리 (불필요한 공백 제거)
