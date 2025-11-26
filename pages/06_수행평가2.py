@@ -99,23 +99,6 @@ st.altair_chart(bar, use_container_width=True)
 st.markdown("---")
 
 
-# -------------------------------
-# 🔍 산점도
-# -------------------------------
-st.subheader("🔍 등록 동물 수 vs 동물 소유자 수 (산점도)")
-scatter = (
-    alt.Chart(grouped)
-    .mark_circle(size=120)
-    .encode(
-        x="등록동물수(마리):Q",
-        y="동물소유자수:Q",
-        color=alt.Color("color:N", scale=None, legend=None),
-        tooltip=["시군명", "등록동물수(마리)", "동물소유자수"]
-    )
-)
-st.altair_chart(scatter, use_container_width=True)
-
-st.markdown("---")
 
 # -------------------------------
 # 🐶🐱 반려동물 추천 시스템 + 사진
