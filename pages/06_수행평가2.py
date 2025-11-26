@@ -106,7 +106,7 @@ q4 = st.radio("4️⃣ 조용한 동물이 좋나요?", ["예", "아니오"])
 pet_images = {
     "강아지": "https://images.unsplash.com/photo-1518717758536-85ae29035b6d",
     "고양이": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131",
-    "햄스터": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.canva.com%2Fko_kr%2Fphotos%2Fs%2Fjunglian-hamster%2F&psig=AOvVaw1LeKzv0hevhkULv6hzY5s6&ust=1764240905176000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCID8l9fTj5EDFQAAAAAdAAAAABAL",
+    "햄스터": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.canva.com%2Fko_kr%2Fphotos%2Fs%2Fjunglian-hamster%2F&psig=AOvVaw0BCrysXNU2N5mWkuVkZv4q&ust=1764240997489000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNiP9oHUj5EDFQAAAAAdAAAAABAE",
     "기니피그": "https://images.unsplash.com/photo-1610389058530-4313d1cc4036",
     "앵무새": "https://images.unsplash.com/photo-1501705789558-40c785c33f61",
     "코브라": "https://images.unsplash.com/photo-1610986606365-71bcc25f9945"
