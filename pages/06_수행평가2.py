@@ -98,22 +98,6 @@ st.altair_chart(bar, use_container_width=True)
 
 st.markdown("---")
 
-# -------------------------------
-# 📈 동물 소유자 수 선 그래프
-# -------------------------------
-st.subheader("📈 시군별 동물 소유자 수 (선 그래프)")
-line = (
-    alt.Chart(grouped)
-    .mark_line(point=True)
-    .encode(
-        x="시군명:N",
-        y="동물소유자수:Q",
-        tooltip=["시군명", "동물소유자수"]
-    )
-)
-st.altair_chart(line, use_container_width=True)
-
-st.markdown("---")
 
 # -------------------------------
 # 🔍 산점도
