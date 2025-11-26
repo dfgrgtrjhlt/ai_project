@@ -55,27 +55,36 @@ def load_data():
 
 # --- 2. 반려동물 등록 현황 시각화 ---
 def visualize_data(region_data):
-    """시군별 등록 현황을 막대 그래프로 표시합니다."""
     st.header("경기도 시군별 반려동물 등록 현황 (2025년 기준)")
-    st.caption("제공된 데이터를 기준으로 시군별 등록된 동물의 수를 합산한 결과입니다.")
-    
+
     if region_data is not None and not region_data.empty:
-        # Matplotlib을 사용하여 한글 폰트 설정
-        plt.rcParams['font.family'] = 'Malgun Gothic' # Windows 기준. Linux/Mac 환경에서는 'AppleGothic' 등으로 변경 필요
-        plt.rcParams['axes.unicode_minus'] = False # 마이너스 폰트 깨짐 방지
+
+        import platform
+        import matplotlib.pyplot as plt
         
+        system = platform.system()
+
+        if system == "Windows":
+            plt.rcParams['font.family'] = 'Malgun Gothic'
+        elif system == "Darwin":
+            plt.rcParams['font.family'] = 'AppleGothic'
+        else:
+            plt.rcParams['font.family'] = 'DejaVu Sans'
+
+        plt.rcParams['axes.unicode_minus'] = False
+
         fig, ax = plt.subplots(figsize=(12, 6))
         region_data.plot(kind='bar', ax=ax, color='skyblue')
-        
+
         ax.set_title('시군별 등록동물수 (2025)', fontsize=16)
         ax.set_xlabel('시군명', fontsize=12)
         ax.set_ylabel('등록동물수 (마리)', fontsize=12)
-        plt.xticks(rotation=45, ha='right') # x축 레이블 회전
+
+        plt.xticks(rotation=45, ha='right')
         plt.tight_layout()
-        
+
         st.pyplot(fig)
-    elif region_data is not None:
-        st.warning("2025년 등록 데이터가 없습니다.")
+
 
 
 # --- 3. 설문 기반 반려동물 추천 시스템 ---
