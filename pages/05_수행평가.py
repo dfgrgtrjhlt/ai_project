@@ -11,14 +11,15 @@ st.set_page_config(
 )
 
 @st.cache_data
+
 def load_data():
-    """데이터 파일을 로드하고 시각화를 위해 전처리합니다."""
-    # 파일 경로 설정 (GitHub/Streamlit Cloud 배포 시 경로)
-    data_path = os.path.join(os.path.dirname(__file__), 'data', 'pet_data.csv')
-    
+    # 현재 파일(page.py)의 상위폴더 = 프로젝트 루트
+    base_path = os.path.dirname(os.path.dirname(__file__))
+    data_path = os.path.join(base_path, 'data', 'pet_data.csv')
+
     try:
-        # 데이터 로드 시 인코딩 문제 발생 가능성이 있어 'euc-kr' 또는 'cp949' 사용
-        df = pd.read_csv(data_path, encoding='cp949') 
+        df = pd.read_csv(data_path, encoding='cp949')
+
         
         # 컬럼 이름 정리 (불필요한 공백 제거)
         df.columns = df.columns.str.strip()
