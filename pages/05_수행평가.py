@@ -129,11 +129,11 @@ def pet_recommendation():
         if q1 == '예' and q3 == '예':
             recommendation = "강아지"
             description = "강아지는 활동적이며 주인과 교감하는 것을 좋아합니다. 규칙적인 산책과 활동을 함께 할 수 있는 분께 적합합니다."
-            image_url = "https://images.unsplash.com/photo-1597633214736-22485c2921a2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            image_url = "https://tse4.mm.bing.net/th/id/OIP.oMP9-tQYLbApO-4u6YODmQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
         elif q1 == '아니오' and q4 == '아니오':
             recommendation = "고양이"
             description = "고양이는 강아지보다 독립적이지만, 주인과의 조용한 교감을 즐깁니다. 적당한 관심과 청결한 환경을 제공할 수 있는 분께 좋습니다."
-            image_url = "https://images.unsplash.com/photo-1574158622682-e40e6988c187?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            image_url = "https://png.pngtree.com/background/20230424/original/pngtree-little-kitten-on-top-of-a-table-picture-image_2456965.jpg"
         elif q2 == '아니오': # 털 관리가 어렵지 않다는 답변
             recommendation = "도마뱀"
             description = "도마뱀은 털 관리가 전혀 필요 없고, 소음이 거의 없으며, 사육 환경만 잘 갖춰준다면 비교적 독립적인 사육이 가능합니다. 이색적인 반려동물을 원하시는 분께 추천합니다."
