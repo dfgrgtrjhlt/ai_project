@@ -22,7 +22,8 @@ def load_data():
     st.write("📁 파일 존재?", os.path.exists(data_path))
 
     try:
-        df = pd.read_csv(data_path, encoding='cp949')
+        df = pd.read_csv(data_path, encoding='utf-8-sig')
+
         return df
     except Exception as e:
         st.error(f"데이터 로드 오류: {e}")
