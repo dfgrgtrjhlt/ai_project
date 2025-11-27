@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-from io import StringIO
+from pathlib import Path
+from io import BytesIO
 
 st.set_page_config(page_title="경기도 시군별 반려동물 현황", layout="wide")
 
@@ -16,30 +17,33 @@ st.balloons()
 st.title("🐾 경기도 시군별 반려동물 등록 현황")
 st.write("CSV 시각화 + 반려동물 추천 + 동물 사진 표시를 포함한 종합 분석 앱입니다.")
 
-uploaded_file = st.file_uploader("CSV 파일을 업로드하세요 (UTF-8 또는 CP949 인코딩 지원)", type=["csv"])
-df = None
+BASE_DIR = Path(__file__).resolve().parent.parent    # project_root
+DATA_PATH = BASE_DIR / "data" / "pet_data.csv"
 
-def read_csv_safely(file):
+def read_csv_safely(path):
     """Try cp949 → utf-8 automatically."""
     for enc in ["cp949", "utf-8"]:
         try:
-            return pd.read_csv(file, encoding=enc)
-        except:
-            file.seek(0)
+            return pd.read_csv(path, encoding=enc)
+        except Exception as e:
+            print(f"[Encoding fail] {enc}: {e}")
             continue
     raise Exception("CSV 파일 인코딩을 읽을 수 없습니다.")
 
-if uploaded_file:
-    df = read_csv_safely(uploaded_file)
-else:
-    default_path = "/mnt/data/dkdrlahWL.csv"
-    try:
-        with open(default_path, "rb") as f:
-            df = read_csv_safely(f)
-            st.info("기본 CSV 파일(/mnt/data/dkdrlahWL.csv)을 불러왔습니다.")
-    except:
-        st.warning("CSV 파일을 업로드하거나 기본 경로에 파일을 준비해주세요.")
-        st.stop()
+# CSV 파일 읽기
+try:
+    df = read_csv_safely(DATA_PATH)
+    st.success(f"CSV 파일을 불러왔습니다: {DATA_PATH}")
+except FileNotFoundError:
+    st.error(f"CSV 파일을 찾을 수 없습니다: {DATA_PATH}")
+    st.stop()
+except Exception as e:
+    st.error(f"CSV 파일을 읽는 중 오류 발생: {e}")
+    st.stop()
+
+# ↓ 이후 df로 원하는 분석/시각화 처리
+st.dataframe(df)
+
 
 # -------------------------------
 # 데이터 전처리
