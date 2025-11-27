@@ -107,8 +107,8 @@ pet_images = {
     "강아지": "https://images.unsplash.com/photo-1518717758536-85ae29035b6d",
     "고양이": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131",
     "햄스터": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8JUVEJTk2JTg0JUVDJThBJUE0JUVEJTg0JUIwfGVufDB8fDB8fHww",
-    "기니피그": "https://images.unsplash.com/photo-1610389058530-4313d1cc4036",
-    "앵무새": "https://images.unsplash.com/photo-1501705789558-40c785c33f61",
+    "기니피그": "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/4arX/image/kHEyaIBkalJXnxwx46z7kY5Kwoc.jpg",
+    "앵무새": "https://blog.kakaocdn.net/dna/v4EQA/btrrP3WtDNK/AAAAAAAAAAAAAAAAAAAAAAVAqjz5LQ2LQHQnYR4D5b6aASIz21IEv4PWYw6NfXul/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1764514799&allow_ip=&allow_referer=&signature=201mYVK96uC3jStpr14M9Q9RmA0%3D",
     "코브라": "https://media.istockphoto.com/id/1281306013/ko/%EC%82%AC%EC%A7%84/%ED%82%B9-%EC%BD%94%EB%B8%8C%EB%9D%BC.jpg?s=612x612&w=0&k=20&c=k8uEJWrIEfXT2xuvZi7uc-isTqk1yXPz-Ce_v213uVY="
 }
 
